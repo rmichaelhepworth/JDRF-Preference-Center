@@ -5,7 +5,7 @@
 
 <script runat=server>
 	Platform.Load("Core","1");
-	Variable.SetValue("contactKey",Platform.Request.GetFormField('contactKey'));
+	Variable.SetValue("contactKey",Platform.Request.GetQueryStringParameter('contactKey'));
 </script>
 
 Contact Key Passed: %%=V(@contactKey)=%%
