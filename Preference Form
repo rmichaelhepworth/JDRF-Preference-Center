@@ -21,6 +21,6 @@ Contact Last Name:  %%=V(@lastName)=%%</br></br>
 }
 catch(e)
 {
-	Platform.Response.Write(e[1]);
+	Platform.Response.Write("Error:" + e[1]);
 }
 </script>
