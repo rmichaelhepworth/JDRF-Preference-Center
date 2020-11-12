@@ -1,1 +1,16 @@
-Hello World
+%%[
+	var @messageContext
+	Set @messageContext = [_messagecontext]
+]%%
+
+<script runat=server>
+
+	Platform.Load("Core","1");
+
+	var debug = false;
+
+	if (Variable.GetValue("@messagecontext") == "LANDINGPAGE") {debug = true};
+
+	if (debug == true) {Write('<html><h3>Script running from Landing Page so debug is on.</h3></html>')};
+
+</script>
