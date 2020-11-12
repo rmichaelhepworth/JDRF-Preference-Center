@@ -8,11 +8,8 @@
 	Platform.Load("Core","1");
 	try {
 	Variable.SetValue("@contactKey",Platform.Request.GetQueryStringParameter('contactKey'));
+	var baddivide = 2/0;
 </script>
-%%[
-	Set @rs= RetrieveSalesforceObjects('Contact', 'Id, FirstName,LastName', 'Id', '=', @contactKey)
-]%%
-
 <script runat=server>
 	}
 	catch(e) {
