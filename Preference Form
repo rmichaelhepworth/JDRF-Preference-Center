@@ -11,10 +11,6 @@ try {
 </script>
 %%[
 	Set @rs= RetrieveSalesforceObjects('Contact', 'Id, FirstName,LastName', 'Id', '=', @contactKey)
-	IF RowCount(@rs) > 0 THEN
-		Set @firstName = field(Row(@rs,1),'FirstName')
-		Set @lastName = field(Row(@rs,1),'LastName')
-	ENDIF
 ]%%
 
 Contact Key Passed: %%=V(@contactKey)=%%</br></br>
