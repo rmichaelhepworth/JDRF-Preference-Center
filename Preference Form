@@ -11,7 +11,13 @@
 	}
 	catch(error) {Platform.Response.write(error);}
 </script>
+%%[
+	Set @rs= RetrieveSalesforceObjects('Contact', 'Id, FirstName,LastName', 'Id', '=', @contactKey)
+]%%
+
 
 Contact Key Passed: %%=V(@contactKey)=%%</br></br>
 Contact First Name:  %%=V(@firstName)=%%</br></br>
 Contact Last Name:  %%=V(@lastName)=%%</br></br>
+
+TEST 1
