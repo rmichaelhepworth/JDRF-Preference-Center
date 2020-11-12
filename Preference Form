@@ -1,20 +1,30 @@
 
 %%[
-	var @messageContext,@contactKey
+	var @messageContext,@contactKey,@firstName,@lastName
 	Set @messageContext = [_messagecontext]
 ]%%
 
 <script runat=server>
+try {
 	Platform.Load("Core","1");
 	Variable.SetValue("contactKey",Platform.Request.GetQueryStringParameter('contactKey'));
 </script>
 %%[
 	Set @rs= RetrieveSalesforceObjects('Contact', 'Id, FirstName,LastName', 'Id', '=', @contactKey)
-	IF NOT Empty(@rs) THEN
+	IF RowCount(@rs) > 0 THEN
 		Set @firstName = field(Row(@rs,1),'FirstName')
+		Set @lastName = field(Row(@rs,1),'LastName')
 	ENDIF
 ]%%
 
 Contact Key Passed: %%=V(@contactKey)=%%</br></br>
 Contact First Name:  %%=V(@firstName)=%%</br></br>
 Contact Last Name:  %%=V(@lastName)=%%</br></br>
+
+<script runat=server>
+}
+catch(e)
+{
+	Platform.Response.Write(e);
+}
+</script>
