@@ -12,7 +12,7 @@
 	}
 	catch(e)
 	{
-
+		Platform.Response.Write("Error:" + Stringify(e));
 	}
 </script>
 
