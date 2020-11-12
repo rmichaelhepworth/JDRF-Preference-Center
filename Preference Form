@@ -6,7 +6,10 @@
 
 <script runat=server>
 	Platform.Load("Core","1");
+	try {
 	Variable.SetValue("contactKey",Platform.Request.GetQueryStringParameter('contactKey'));
+	}
+	catch(error) {Platform.Response.write(error);}
 </script>
 
 Contact Key Passed: %%=V(@contactKey)=%%</br></br>
