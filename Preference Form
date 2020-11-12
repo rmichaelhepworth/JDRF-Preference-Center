@@ -1,16 +1,11 @@
 %%[
-	var @messageContext
+	var @messageContext,@contactKey
 	Set @messageContext = [_messagecontext]
 ]%%
 
 <script runat=server>
-
 	Platform.Load("Core","1");
-
-	var debug = false;
-
-	if (Variable.GetValue("@messagecontext") == "LANDINGPAGE") {debug = true};
-
-	if (debug == true) {Write('<html><h3>Hello World 6</h3></html>')};
-
+	Variable.SetValue("contactKey",Platform.Request.GetFormField('contactKey'));
 </script>
+
+Contact Key Passed: %%=V('contactKey')=%%
