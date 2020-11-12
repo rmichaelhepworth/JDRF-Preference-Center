@@ -11,6 +11,6 @@
 
 	if (Variable.GetValue("@messagecontext") == "LANDINGPAGE") {debug = true};
 
-	if (debug == true) {Write('<html><h3>Hello World 3</h3></html>')};
+	if (debug == true) {Write('<html><h3>Hello World 4</h3></html>')};
 
 </script>
