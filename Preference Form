@@ -8,4 +8,4 @@
 	Variable.SetValue("contactKey",Platform.Request.GetFormField('contactKey'));
 </script>
 
-Contact Key Passed: %%=V('contactKey')=%%
+Contact Key Passed: %%=V(@contactKey)=%%
