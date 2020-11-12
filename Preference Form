@@ -8,13 +8,15 @@
 	Platform.Load("Core","1");
 	try {
 	Variable.SetValue("contactKey",Platform.Request.GetQueryStringParameter('contactKey'));
-	}
-	catch(error) {Platform.Response.write(error);}
 </script>
 %%[
 	Set @rs= RetrieveSalesforceObjects('Contact', 'Id, FirstName,LastName', 'Id', '=', @contactKey)
 ]%%
 
+<script runat=server>
+	}
+	catch(error) {Platform.Response.write(error);}
+</script>
 
 Contact Key Passed: %%=V(@contactKey)=%%</br></br>
 Contact First Name:  %%=V(@firstName)=%%</br></br>
