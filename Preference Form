@@ -1,3 +1,4 @@
+
 %%[
 	var @messageContext,@contactKey
 	Set @messageContext = [_messagecontext]
@@ -10,9 +11,10 @@
 %%[
 	Set @rs= RetrieveSalesforceObjects('Contact', 'Id, FirstName,LastName', 'Id', '=', @contactKey)
 	IF NOT Empty(@rs) THEN
-	Set @firstName = field(Row(@rs,1),'FirstName')
+		Set @firstName = field(Row(@rs,1),'FirstName')
 	ENDIF
 ]%%
 
 Contact Key Passed: %%=V(@contactKey)=%%</br></br>
 Contact First Name:  %%=V(@firstName)=%%</br></br>
+Contact Last Name:  %%=V(@lastName)=%%</br></br>
