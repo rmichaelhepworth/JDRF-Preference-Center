@@ -12,11 +12,9 @@
 </script>
 
 %%[
-	Set @firstName = "Bob"
-	Set @rs= RetrieveSalesforceObjects('Contact', 'Id, FirstName,LastName', 'Email', '=', 'maryhorn@gmail.com')
+	Set @rs= RetrieveSalesforceObjects('Contact', 'Id, FirstName,LastName', 'Id', '=', @contactKey)
 	IF RowCount(@rs) > 0 THEN
 		Set @firstName = Field(Row(@rs,1),'FirstName')
-		Set @contactKey = Field(Row(@rs,1),'Id')
 	ENDIF
 ]%%
 
