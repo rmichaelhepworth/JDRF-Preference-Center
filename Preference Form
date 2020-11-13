@@ -1,6 +1,7 @@
 
 %%[
 	var @messageContext,@contactKey,@firstName,@lastName
+	var @monthlyNewsletter,@AdvocacyNewsletter,@researchNewsletter,@chapterUpdates
 	Set @messageContext = [_messagecontext]
 ]%%
 
@@ -16,6 +17,10 @@
 	IF RowCount(@rs) > 0 THEN
 		Set @firstName = Field(Row(@rs,1),'FirstName')
 		Set @lastName = Field(Row(@rs,1),'LastName')
+		Set @monthlyNewsletter = Field(Row(@rs,1),'Monthly_Newsletter__c')
+		Set @AdvocacyNewsletter = Field(Row(@rs,1),'Mkto_Advocacy__c')
+		Set @researchNewsletter = Field(Row(@rs,1),'Mkto_Research_News__c')
+		Set @chapterUpdates = Field(Row(@rs,1),'Mkto_Chapter_Updates__c')
 	ENDIF
 ]%%
 
@@ -29,8 +34,12 @@
 </script>
 
 Contact Key Passed: %%=V(@contactKey)=%%</br></br>
-Contact First Name:  %%=V(@firstName)=%%</br></br>
-Contact Last Name:  %%=V(@lastName)=%%</br></br>
+Contact First Name:  %%=V(@firstName)=%%</br>
+Contact Last Name:  %%=V(@lastName)=%%</br>
+Monthly News:  %%=V(@monthlyNewsletter)=%%</br>
+Advocacy News:  %%=V(@AdvocacyNewsletter)=%%</br>
+Research News:  %%=V(@researchNewsletter)=%%</br>
+Chapter News:  %%=V(@chapterUpdates)=%%</br></br>
 Rows Returned:  %%=RowCount(@rs)=%%</br></br>
 
-TEST 3
+TEST 4
