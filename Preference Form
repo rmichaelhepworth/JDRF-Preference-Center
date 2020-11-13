@@ -14,7 +14,7 @@
 
 %%[
 	Set @rs= RetrieveSalesforceObjects('Contact', 'Id, FirstName,LastName', 'Id', '=', @contactKey)
-	IF RowCount() > 0 THEN
+	IF RowCount(@rs) > 0 THEN
 		Set @firstName = "Bob"
 	ENDIF
 ]%%
