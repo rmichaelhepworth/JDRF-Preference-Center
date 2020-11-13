@@ -33,6 +33,9 @@
 	}
 </script>
 
+<form action="#" method="post" target="self">
+	<input type="checkbox" %%=Iif(@monthlyNewsletter,'checked','')=%% /> Monthly News </br></br>
+</form>
 Contact Key Passed: %%=V(@contactKey)=%%</br></br>
 Contact First Name:  %%=V(@firstName)=%%</br>
 Contact Last Name:  %%=V(@lastName)=%%</br>
