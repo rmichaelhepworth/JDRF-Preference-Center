@@ -35,4 +35,4 @@ Contact First Name:  %%=V(@firstName)=%%</br></br>
 Contact Last Name:  %%=V(@lastName)=%%</br></br>
 Rows Returned:  %%=RowCount(@rs)=%%</br></br>
 
-TEST 8
+TEST 9
