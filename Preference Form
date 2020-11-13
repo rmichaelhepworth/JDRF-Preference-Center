@@ -11,6 +11,12 @@
 		Variable.SetValue("@contactKey",Platform.Request.GetQueryStringParameter('contactKey'));
 		throw("something is wrong");
 </script>
+
+%%[
+	Set @rs= RetrieveSalesforceObjects('Contact', 'Id, FirstName,LastName', 'Id', '=', @contactKey)
+]%%
+
+
 <script runat=server>
 Platform.Load("Core","1");
 	}
