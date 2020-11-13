@@ -32,6 +32,6 @@ Platform.Load("Core","1");
 Contact Key Passed: %%=V(@contactKey)=%%</br></br>
 Contact First Name:  %%=V(@firstName)=%%</br></br>
 Contact Last Name:  %%=V(@lastName)=%%</br></br>
-Rows Returned:  %%=RowCount(@rs)=%%
+Rows Returned:  %%=RowCount(@rs)=%%</br></br>
 
-TEST 4
+TEST 5
