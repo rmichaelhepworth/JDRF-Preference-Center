@@ -9,13 +9,13 @@
 	try
 	{
 		Variable.SetValue("@contactKey",Platform.Request.GetQueryStringParameter('contactKey'));
-		Set @firstName = "Bob"
 </script>
 
 %%[
+	Set @firstName = "Bob"
 	Set @rs= RetrieveSalesforceObjects('Contact', 'Id, FirstName,LastName', 'Id', '=', @contactKey)
 	IF RowCount(@rs) > 0 THEN
-		Set @firstName = "Bob"
+		Set @firstName = "John"
 	ENDIF
 ]%%
 
