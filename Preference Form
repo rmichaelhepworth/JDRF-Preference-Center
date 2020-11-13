@@ -9,7 +9,7 @@
 	try
 	{
 		Variable.SetValue("@contactKey",Platform.Request.GetQueryStringParameter('contactKey'));
-		eval(0/1);
+		throw("something is wrong");
 </script>
 <script runat=server>
 Platform.Load("Core","1");
@@ -24,4 +24,4 @@ Contact Key Passed: %%=V(@contactKey)=%%</br></br>
 Contact First Name:  %%=V(@firstName)=%%</br></br>
 Contact Last Name:  %%=V(@lastName)=%%</br></br>
 
-TEST 6
+TEST 7
