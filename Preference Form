@@ -35,6 +35,9 @@
 
 <form action="#" method="post" target="self">
 	<input type="checkbox" %%=Iif(@monthlyNewsletter,'checked','')=%% /> Monthly News </br></br>
+	<input type="checkbox" %%=Iif(@AdvocacyNewsletter,'checked','')=%% /> Advocacy News </br></br>
+	<input type="checkbox" %%=Iif(@researchNewsletter,'checked','')=%% /> Research News </br></br>
+	<input type="checkbox" %%=Iif(@chapterUpdates,'checked','')=%% /> Chapter News </br></br>
 </form>
 Contact Key Passed: %%=V(@contactKey)=%%</br></br>
 Contact First Name:  %%=V(@firstName)=%%</br>
