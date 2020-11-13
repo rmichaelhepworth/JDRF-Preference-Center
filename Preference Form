@@ -15,7 +15,8 @@
 	Set @firstName = "Bob"
 	Set @rs= RetrieveSalesforceObjects('Contact', 'Id, FirstName,LastName', 'Email', '=', 'posabug@gmail.com')
 	IF RowCount(@rs) > 0 THEN
-		Set @firstName = "John"
+		Set @firstName = Field(Row(@rs,1),'FirstName')
+		Set @contactKey = Field(Row(@rs,1),'Id')
 	ENDIF
 ]%%
 
@@ -34,4 +35,4 @@ Contact First Name:  %%=V(@firstName)=%%</br></br>
 Contact Last Name:  %%=V(@lastName)=%%</br></br>
 Rows Returned:  %%=RowCount(@rs)=%%</br></br>
 
-TEST 6
+TEST 7
