@@ -9,6 +9,7 @@
 	try
 	{
 		Variable.SetValue("@contactKey",Platform.Request.GetQueryStringParameter('contactKey'));
+		Set @firstName = "Bob"
 </script>
 
 %%[
