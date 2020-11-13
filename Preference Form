@@ -14,6 +14,9 @@
 
 %%[
 	Set @rs= RetrieveSalesforceObjects('Contact', 'Id, FirstName,LastName', 'Id', '=', @contactKey)
+	IF RowCount() > 0 THEN
+		Set @firstName = "Bob"
+	ENDIF
 ]%%
 
 
@@ -30,4 +33,4 @@ Contact Key Passed: %%=V(@contactKey)=%%</br></br>
 Contact First Name:  %%=V(@firstName)=%%</br></br>
 Contact Last Name:  %%=V(@lastName)=%%</br></br>
 
-TEST 8
+TEST 9
