@@ -2,6 +2,8 @@
 %%[
 	var @messageContext,@contactKey,@firstName,@lastName
 	var @monthlyNewsletter,@AdvocacyNewsletter,@researchNewsletter,@chapterUpdates
+  var @resultsObject,@publicationLists
+
 	Set @messageContext = [_messagecontext]
 ]%%
 
@@ -13,6 +15,14 @@
 </script>
 
 %%[
+
+  Set @publicationLists = LookupOrderedRows("Publication Lists",-1,"Order","Active",1)
+  Set @resultsObject = "["
+  FOR @index = 0 TO RowCount(@publicationLists) DO
+    Set @resultsObject = Concat(@resultsObject,Field(Row(@publicationLists,@index),"Title,"))
+  NEXT @Variable
+  Set @resultsObject = Concat(@resultsObject,"]")
+
 	Set @rs= RetrieveSalesforceObjects('Contact', 'Id, FirstName,LastName,Monthly_Newsletter__c,Mkto_Advocacy__c,Mkto_Research_News__c,Mkto_Chapter_Updates__c', 'Id', '=', @contactKey)
 	IF RowCount(@rs) > 0 THEN
 		Set @firstName = Field(Row(@rs,1),'FirstName')
@@ -26,12 +36,15 @@
 
 
 <script runat=server>
+
 	}
 	catch(e)
 	{
 		Platform.Response.Write("Error:" + Stringify(e));
 	}
 </script>
+
+Result Object String:&nbsp;&nbsp; %%=V(@resultsObject)=%%
 
 <form action="#" method="post" target="self">
 	<input type="checkbox" %%=Iif(@monthlyNewsletter,'checked','')=%% /> Monthly News </br></br>
