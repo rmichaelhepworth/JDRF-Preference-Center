@@ -22,7 +22,8 @@
     FOR @index = 1 TO RowCount(@publicationLists) DO
       Set @publicationListTitle = Field(Row(@publicationLists,@index),"Title")
       Set @publicationListCRMFieldName = Field(Row(@publicationLists,@index),"CRM_Field_Name")
-      Set @resultsObject = Concat(@resultsObject,"{""Title"":""",@publicationListTitle,""",""Value"":""",Field(Row(@rs,1),@publicationListCRMFieldName),"""}",Iif(@index == RowCount(@publicationLists),"",","))
+      Set @publicationListValue = Field(Row(@rs,1),@publicationListCRMFieldName)
+      Set @resultsObject = Concat(@resultsObject,"{""Title"":""",@publicationListTitle,""",""Value"":""",@publicationListValue,"""}",Iif(@index == RowCount(@publicationLists),"",","))
     NEXT @Variable
     Set @resultsObject = Concat(@resultsObject,"]")
 		Set @firstName = Field(Row(@rs,1),'FirstName')
@@ -61,5 +62,5 @@ Research News:  %%=V(@researchNewsletter)=%%</br>
 Chapter News:  %%=V(@chapterUpdates)=%%</br></br>
 Rows Returned:  %%=RowCount(@rs)=%%</br></br>
 
-TEST 7
+TEST 8
 </html>
