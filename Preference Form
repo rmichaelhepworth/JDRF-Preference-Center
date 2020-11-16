@@ -20,7 +20,9 @@
     Set @publicationLists = LookupOrderedRows("Publication Lists",-1,"Order","Active",1)
     Set @resultsObject = "["
     FOR @index = 1 TO RowCount(@publicationLists) DO
-      Set @resultsObject = Concat(@resultsObject,"{""Title"":""",Field(Row(@publicationLists,@index),"Title"),""",""Value"":""",Field(Row(@rs,1),Field(Row(@publicationLists,@index),"CRM_Field_Name")),"""}",Iif(@index == RowCount(@publicationLists),"",","))
+      Set @publicationListTitle = Field(Row(@publicationLists,@index),"Title")
+      Set @publicationListCRMFieldName = Field(Row(@publicationLists,@index),"CRM_Field_Name")
+      Set @resultsObject = Concat(@resultsObject,"{""Title"":""",@publicationListTitle,""",""Value"":""",Field(Row(@rs,1),@publicationListCRMFieldName),"""}",Iif(@index == RowCount(@publicationLists),"",","))
     NEXT @Variable
     Set @resultsObject = Concat(@resultsObject,"]")
 		Set @firstName = Field(Row(@rs,1),'FirstName')
@@ -59,5 +61,5 @@ Research News:  %%=V(@researchNewsletter)=%%</br>
 Chapter News:  %%=V(@chapterUpdates)=%%</br></br>
 Rows Returned:  %%=RowCount(@rs)=%%</br></br>
 
-TEST 6
+TEST 7
 </html>
