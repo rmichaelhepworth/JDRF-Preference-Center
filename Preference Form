@@ -65,5 +65,5 @@ Research News:  %%=V(@researchNewsletter)=%%</br>
 Chapter News:  %%=V(@chapterUpdates)=%%</br></br>
 Rows Returned:  %%=RowCount(@rs)=%%</br></br>
 
-TEST 3
+TEST 4
 </html>
