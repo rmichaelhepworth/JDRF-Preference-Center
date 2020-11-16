@@ -37,7 +37,7 @@
 ]%%
 
 <script runat=server>
-    responseObject = eval(Variable.getValue("@resultsObject"))
+    responseObject = eval(Variable.getValue("resultsObject"))
     Platform.Response.Write("Response Object: " + Stringify(responseObject));
 	}
 	catch(e)
@@ -69,5 +69,5 @@ Research News:  %%=V(@researchNewsletter)=%%</br>
 Chapter News:  %%=V(@chapterUpdates)=%%</br></br>
 Rows Returned:  %%=RowCount(@rs)=%%</br></br>
 
-TEST 10
+TEST 1
 </html>
