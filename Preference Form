@@ -9,6 +9,9 @@
 
 <script runat=server>
 	Platform.Load("Core","1");
+
+  var responseObject;
+
 	try
 	{
 		Variable.SetValue("@contactKey",Platform.Request.GetQueryStringParameter('contactKey'));
@@ -23,17 +26,20 @@
       Set @publicationListTitle = Field(Row(@publicationLists,@index),"Title")
       Set @publicationListCRMFieldName = Field(Row(@publicationLists,@index),"CRM_Field_Name")
       Set @publicationListValue = Field(Row(@rs,1),@publicationListCRMFieldName)
+      //Add object to array
       Set @resultsObject = Concat(@resultsObject,"{""Title"":""",@publicationListTitle,""",""Value"":""",@publicationListValue,"""}",Iif(@index == RowCount(@publicationLists),"",","))
     NEXT @Variable
     Set @resultsObject = Concat(@resultsObject,"]")
 		Set @firstName = Field(Row(@rs,1),'FirstName')
 		Set @lastName = Field(Row(@rs,1),'LastName')
+
 	ENDIF
 ]%%
 
 
 <script runat=server>
-
+    responseObject = eval(Variable.getValue("@resultsObject"))
+    Platform.Response.Write("Response Object: " + Stringify(responseObject));
 	}
 	catch(e)
 	{
@@ -62,5 +68,5 @@ Research News:  %%=V(@researchNewsletter)=%%</br>
 Chapter News:  %%=V(@chapterUpdates)=%%</br></br>
 Rows Returned:  %%=RowCount(@rs)=%%</br></br>
 
-TEST 9
+TEST 10
 </html>
