@@ -15,22 +15,16 @@
 </script>
 
 %%[
-
-  Set @publicationLists = LookupOrderedRows("Publication Lists",-1,"Order","Active",1)
-  Set @resultsObject = "["
-  FOR @index = 1 TO RowCount(@publicationLists) DO
-    Set @resultsObject = Concat(@resultsObject,"{""Title"":""",Field(Row(@publicationLists,@index),"Title"),"""}",Iif(@index == RowCount(@publicationLists),"",","))
-  NEXT @Variable
-  Set @resultsObject = Concat(@resultsObject,"]")
-
 	Set @rs= RetrieveSalesforceObjects('Contact', 'Id, FirstName,LastName,Monthly_Newsletter__c,Mkto_Advocacy__c,Mkto_Research_News__c,Mkto_Chapter_Updates__c', 'Id', '=', @contactKey)
 	IF RowCount(@rs) > 0 THEN
+    Set @publicationLists = LookupOrderedRows("Publication Lists",-1,"Order","Active",1)
+    Set @resultsObject = "["
+    FOR @index = 1 TO RowCount(@publicationLists) DO
+      Set @resultsObject = Concat(@resultsObject,"{""Title"":""",Field(Row(@publicationLists,@index),"Title"),""",""Value"":""",Field(Row(@rs,1),Field(Row(@publicationLists,@index),"CRM_Field_Name")),"""}",Iif(@index == RowCount(@publicationLists),"",","))
+    NEXT @Variable
+    Set @resultsObject = Concat(@resultsObject,"]")
 		Set @firstName = Field(Row(@rs,1),'FirstName')
 		Set @lastName = Field(Row(@rs,1),'LastName')
-		Set @monthlyNewsletter = Field(Row(@rs,1),'Monthly_Newsletter__c')
-		Set @AdvocacyNewsletter = Field(Row(@rs,1),'Mkto_Advocacy__c')
-		Set @researchNewsletter = Field(Row(@rs,1),'Mkto_Research_News__c')
-		Set @chapterUpdates = Field(Row(@rs,1),'Mkto_Chapter_Updates__c')
 	ENDIF
 ]%%
 
@@ -65,5 +59,5 @@ Research News:  %%=V(@researchNewsletter)=%%</br>
 Chapter News:  %%=V(@chapterUpdates)=%%</br></br>
 Rows Returned:  %%=RowCount(@rs)=%%</br></br>
 
-TEST 5
+TEST 6
 </html>
