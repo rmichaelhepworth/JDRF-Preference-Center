@@ -36,7 +36,6 @@
 	ENDIF
 ]%%
 
-
 <script runat=server>
     responseObject = eval(Variable.getValue("@resultsObject"))
     Platform.Response.Write("Response Object: " + Stringify(responseObject));
@@ -46,11 +45,13 @@
 		Platform.Response.Write("Error:" + e.message);
 	}
 </script>
+
 <html>
 <head>
   <meta http-equiv="pragma" content="no-cache" />
 </head>
 
+</br></br>
 Result Object String:&nbsp;&nbsp; %%=V(@resultsObject)=%%
 
 <form action="#" method="post" target="self">
