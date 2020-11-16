@@ -18,7 +18,7 @@
 
   Set @publicationLists = LookupOrderedRows("Publication Lists",-1,"Order","Active",1)
   Set @resultsObject = "["
-  FOR @index = 0 TO RowCount(@publicationLists) DO
+  FOR @index = 1 TO RowCount(@publicationLists) DO
     Set @resultsObject = Concat(@resultsObject,Field(Row(@publicationLists,@index),"Title,"))
   NEXT @Variable
   Set @resultsObject = Concat(@resultsObject,"]")
@@ -61,4 +61,4 @@ Research News:  %%=V(@researchNewsletter)=%%</br>
 Chapter News:  %%=V(@chapterUpdates)=%%</br></br>
 Rows Returned:  %%=RowCount(@rs)=%%</br></br>
 
-TEST 7
+TEST 8
