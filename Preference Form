@@ -2,15 +2,16 @@
 %%[
 	var @messageContext,@contactKey,@firstName,@lastName
 	var @monthlyNewsletter,@AdvocacyNewsletter,@researchNewsletter,@chapterUpdates
-  var @settingsObject,@publicationLists,@contactFields,@referrer
+  var @settingsObject,@publicationLists,@contactFields,@referrer,@agent
 
   Set @publicationLists = LookupOrderedRows("Publication Lists",-1,"Order","Active",1);
 
 	Set @messageContext = [_messagecontext]
-  Set @contactFields = 'Id, FirstName,LastName'
-
+  Set @agent = HTTPRequestHeader('User-Agent')
   Set @referrer = HTTPRequestHeader('Referer')
   Set @host = HTTPRequestHeader('Host')
+
+  Set @contactFields = 'Id, FirstName,LastName'
 
   FOR @publicationListIndex = 1 TO RowCount(@publicationLists) DO
     Set @ContactFields = Concat(Iif(Empty(@ContactFields),"",Concat(@ContactFields,",")),Field(Row(@publicationLists,@publicationListIndex),"CRM_Field_Name"))
@@ -25,6 +26,7 @@
 
 	try
 	{
+
 		Variable.SetValue("@contactKey",Platform.Request.GetQueryStringParameter('contactKey'));
 </script>
 
@@ -72,7 +74,8 @@
 <b>Result Object String:</b>&nbsp;&nbsp; %%=V(@settingsObject)=%%</br></br>
 <b>Referrer:</b> &nbsp;&nbsp; %%=V(@referrer)=%%</br></br>
 <b>Host:</b> &nbsp;&nbsp; %%=V(@host)=%%</br></br>
-<b>Agent:</b> &nbsp;&nbsp; %%=HTTPRequestHeader('User-Agent')=%%</br></br>
+<b>Agent:</b> &nbsp;&nbsp; %%=V(@agent)=%%</br></br>
+<b>Message Context:</b> &nbsp;&nbsp; %%=V(@messageContext)=%%</br></br>
 
-TEST 7
+TEST 9
 </html>
