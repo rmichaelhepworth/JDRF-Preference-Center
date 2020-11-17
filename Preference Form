@@ -61,26 +61,12 @@
   <meta http-equiv="pragma" content="no-cache" />
 </head>
 
-</br></br>
+<h3>Debug</h3>
+Contact Key Passed:&nbsp;&nbsp; %%=V(@contactKey)=%%</br></br>
+Contact Fields:&nbsp;&nbsp;  %%=V(@ContactFields)=%%</br></br>
+Rows Returned:&nbsp;&nbsp;  %%=RowCount(@rs)=%%</br></br>
 Result Object String:&nbsp;&nbsp; %%=V(@resultsObject)=%%
 
-<form action="#" method="post" target="self">
-	<input type="checkbox" %%=Iif(@monthlyNewsletter,'checked','')=%% /> Monthly News </br></br>
-	<input type="checkbox" %%=Iif(@AdvocacyNewsletter,'checked','')=%% /> Advocacy News </br></br>
-	<input type="checkbox" %%=Iif(@researchNewsletter,'checked','')=%% /> Research News </br></br>
-	<input type="checkbox" %%=Iif(@chapterUpdates,'checked','')=%% /> Chapter News </br></br>
-</form>
-
-Contact Key Passed: %%=V(@contactKey)=%%</br></br>
-Contact First Name:  %%=V(@firstName)=%%</br>
-Contact Last Name:  %%=V(@lastName)=%%</br>
-Contact Fields:  %%=V(@ContactFields)=%%
-Monthly News:  %%=V(@monthlyNewsletter)=%%</br>
-Advocacy News:  %%=V(@AdvocacyNewsletter)=%%</br>
-Research News:  %%=V(@researchNewsletter)=%%</br>
-Chapter News:  %%=V(@chapterUpdates)=%%</br></br>
-Rows Returned:  %%=RowCount(@rs)=%%</br></br>
-
-TEST 8
+TEST 9
 
 </html>
