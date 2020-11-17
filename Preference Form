@@ -48,7 +48,6 @@
     Platform.Load("Core","1");
     eval("responseObject = " + Variable.GetValue("@resultsObject"));
     Platform.Response.Write("Response Object: " + Stringify(responseObject));
-    Platform.Response.Write("</br></br>publicationListValues: " + Stringify(responseObject.publicationListValues));
 	}
 	catch(e)
 	{
