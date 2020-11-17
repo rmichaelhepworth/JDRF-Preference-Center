@@ -39,7 +39,7 @@
       Set @publicationListCRMFieldName = Field(Row(@publicationLists,@publicationListIndex),"CRM_Field_Name")
       Set @publicationListValue = Field(Row(@rs,1),@publicationListCRMFieldName)
       //Add object to array
-      Set @settingsObject = Concat(@settingsObject,"{""Title"":""",@publicationListTitle,""",""Value"":""",@publicationListValue,"""}",Iif(@publicationListIndex == RowCount(@publicationLists),"",","))
+      Set @settingsObject = Concat(@settingsObject,"{""Title"":""",@publicationListTitle,""",""CRMFieldName"":""",@publicationListCRMFieldName,""",""Value"":""",@publicationListValue,"""}",Iif(@publicationListIndex == RowCount(@publicationLists),"",","))
     NEXT @publicationListIndex
 
 		Set @firstName = Field(Row(@rs,1),'FirstName');
