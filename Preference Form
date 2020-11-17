@@ -54,29 +54,14 @@
     responseObject.firstName = Variable.GetValue("@firstName");
     responseObject.lastName = Variable.GetValue("@lastName");
     eval("responseObject.publicationListSettings = " + Variable.GetValue("@settingsObject"));
-    Platform.Response.Write(Stringify(responseObject));
 	}
 	catch(e)
 	{
-		Platform.Response.Write("Error:" + e.message);
+		responseObject.error = e.message;
 	}
+  finally
+  {
+    Platform.Response.SetResponseHeader("Content-Type","application/json charset=utf-8");
+    Platform.Response.Write(Stringify(responseObject));
+  }
 </script>
-
-<html>
-<head>
-  <meta http-equiv="pragma" content="no-cache" />
-</head>
-
-<h3>Debug</h3>
-<b>Contact Key Passed:</b>&nbsp;&nbsp; %%=V(@contactKey)=%%</br></br>
-<b>Contact Fields:</b>&nbsp;&nbsp;  %%=V(@ContactFields)=%%</br></br>
-<b>Rows Returned:</b>&nbsp;&nbsp;  %%=RowCount(@rs)=%%</br></br>
-<b>Result Object String:</b>&nbsp;&nbsp; %%=V(@settingsObject)=%%</br></br>
-<b>Referrer:</b> &nbsp;&nbsp; %%=V(@referrer)=%%</br></br>
-<b>Host:</b> &nbsp;&nbsp; %%=V(@host)=%%</br></br>
-<b>Agent:</b> &nbsp;&nbsp; %%=V(@agent)=%%</br></br>
-<b>Message Context:</b> &nbsp;&nbsp; %%=V(@messageContext)=%%</br></br>
-
-TEST 9
-
-</html>
