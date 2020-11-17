@@ -18,26 +18,26 @@
 </script>
 
 %%[
-	Set @rs= RetrieveSalesforceObjects('Contact', 'Id, FirstName,LastName,Mkto_Periodic_Email_Updates__c,Mkto_Advocacy__c,Mkto_Research_News__c,Mkto_Chapter_Updates__c', 'Id', '=', @contactKey)
-  Set @resultsObject = "["
+	Set @rs= RetrieveSalesforceObjects('Contact', 'Id, FirstName,LastName,Mkto_Periodic_Email_Updates__c,Mkto_Advocacy__c,Mkto_Research_News__c,Mkto_Chapter_Updates__c', 'Id', '=', @contactKey);
+  Set @resultsObject = "{[";
   IF RowCount(@rs) > 0 THEN
-    Set @publicationLists = LookupOrderedRows("Publication Lists",-1,"Order","Active",1)
+    Set @publicationLists = LookupOrderedRows("Publication Lists",-1,"Order","Active",1);
     FOR @index = 1 TO RowCount(@publicationLists) DO
-      Set @publicationListTitle = Field(Row(@publicationLists,@index),"Title")
-      Set @publicationListCRMFieldName = Field(Row(@publicationLists,@index),"CRM_Field_Name")
-      Set @publicationListValue = Field(Row(@rs,1),@publicationListCRMFieldName)
+      Set @publicationListTitle = Field(Row(@publicationLists,@index),"Title");
+      Set @publicationListCRMFieldName = Field(Row(@publicationLists,@index),"CRM_Field_Name");
+      Set @publicationListValue = Field(Row(@rs,1),@publicationListCRMFieldName);
       //Add object to array
-      Set @resultsObject = Concat(@resultsObject,"{""Title"":""",@publicationListTitle,""",""Value"":""",@publicationListValue,"""}",Iif(@index == RowCount(@publicationLists),"",","))
+      Set @resultsObject = Concat(@resultsObject,"{""Title"":""",@publicationListTitle,""",""Value"":""",@publicationListValue,"""}",Iif(@index == RowCount(@publicationLists),"",","));
     NEXT @Variable
-		Set @firstName = Field(Row(@rs,1),'FirstName')
-		Set @lastName = Field(Row(@rs,1),'LastName')
+		Set @firstName = Field(Row(@rs,1),'FirstName');
+		Set @lastName = Field(Row(@rs,1),'LastName');
 	ENDIF
-  Set @resultsObject = Concat(@resultsObject,"]")
+  Set @resultsObject = Concat(@resultsObject,"]}");
 ]%%
 
 <script runat=server>
     Platform.Load("Core","1");
-    responseObject = Variable.getValue("@resultsObject");
+    responseObject = Variable.GetValue("@resultsObject");
     Platform.Response.Write("Response Object: " + Stringify(responseObject));
 	}
 	catch(e)
@@ -69,5 +69,5 @@ Research News:  %%=V(@researchNewsletter)=%%</br>
 Chapter News:  %%=V(@chapterUpdates)=%%</br></br>
 Rows Returned:  %%=RowCount(@rs)=%%</br></br>
 
-TEST 10
+TEST 1
 </html>
