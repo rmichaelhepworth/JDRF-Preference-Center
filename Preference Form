@@ -37,7 +37,7 @@
 
 <script runat=server>
     Platform.Load("Core","1");
-    responseObject = Variable.GetValue("@resultsObject");
+    responseObject = eval(Variable.GetValue("@resultsObject"));
     Platform.Response.Write("Response Object: " + Stringify(responseObject));
     Platform.Response.Write("</br></br>publicationListValues: " + responseObject.publicationListValues);
 	}
@@ -71,5 +71,5 @@ Research News:  %%=V(@researchNewsletter)=%%</br>
 Chapter News:  %%=V(@chapterUpdates)=%%</br></br>
 Rows Returned:  %%=RowCount(@rs)=%%</br></br>
 
-TEST 3
+TEST 4
 </html>
