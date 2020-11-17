@@ -62,11 +62,11 @@
 </head>
 
 <h3>Debug</h3>
-Contact Key Passed:&nbsp;&nbsp; %%=V(@contactKey)=%%</br></br>
-Contact Fields:&nbsp;&nbsp;  %%=V(@ContactFields)=%%</br></br>
-Rows Returned:&nbsp;&nbsp;  %%=RowCount(@rs)=%%</br></br>
-Result Object String:&nbsp;&nbsp; %%=V(@resultsObject)=%%
+<b>Contact Key Passed:</b>&nbsp;&nbsp; %%=V(@contactKey)=%%</br></br>
+<b>Contact Fields:</b>&nbsp;&nbsp;  %%=V(@ContactFields)=%%</br></br>
+<b>Rows Returned:</b>&nbsp;&nbsp;  %%=RowCount(@rs)=%%</br></br>
+<b>Result Object String:</b>&nbsp;&nbsp; %%=V(@resultsObject)=%%</br></br>
 
-TEST 9
+TEST 1
 
 </html>
