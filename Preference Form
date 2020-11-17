@@ -9,9 +9,7 @@
 	Set @messageContext = [_messagecontext]
   Set @contactFields = 'Id, FirstName,LastName'
 
-  FOR @publicationListIndex = 1 TO RowCount(@publicationLists) DO
-    Set @ContactFields = Concat(",",Field(Row(@publicationLists,@index),"CRM_Field_Name")
-  NEXT @publicationListIndex
+  
 
 ]%%
 
@@ -81,6 +79,6 @@ Research News:  %%=V(@researchNewsletter)=%%</br>
 Chapter News:  %%=V(@chapterUpdates)=%%</br></br>
 Rows Returned:  %%=RowCount(@rs)=%%</br></br>
 
-TEST 6
+TEST 7
 
 </html>
