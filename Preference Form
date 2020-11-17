@@ -18,7 +18,7 @@
 <script runat=server>
 	Platform.Load("Core","1");
 
-  var responseObject;
+  var responseObject = {};
 
 	try
 	{
