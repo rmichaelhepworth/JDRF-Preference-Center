@@ -72,6 +72,7 @@
 <b>Result Object String:</b>&nbsp;&nbsp; %%=V(@settingsObject)=%%</br></br>
 <b>Referrer:</b> &nbsp;&nbsp; %%=V(@referrer)=%%</br></br>
 <b>Host:</b> &nbsp;&nbsp; %%=V(@host)=%%</br></br>
+<b>Agent:</b> &nbsp;&nbsp; %%=HTTPRequestHeader('User-Agent')=%%</br></br>
 
 TEST 7
 </html>
