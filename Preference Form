@@ -37,7 +37,7 @@
 ]%%
 
 <script runat=server>
-    eval("responseObject = " + Variable.getValue("resultsObject");
+    eval("responseObject = " + Variable.getValue("@resultsObject");
     Platform.Response.Write("Response Object: " + Stringify(responseObject));
 	}
 	catch(e)
