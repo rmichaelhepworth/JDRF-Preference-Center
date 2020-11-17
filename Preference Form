@@ -9,7 +9,9 @@
 	Set @messageContext = [_messagecontext]
   Set @contactFields = 'Id, FirstName,LastName'
 
-  
+  FOR @publicationListIndex = 1 TO RowCount(@publicationLists) DO
+    Set @ContactFields = Concat(",",Field(Row(@publicationLists,@publicationListIndex),"CRM_Field_Name"))
+  NEXT @publicationListIndex
 
 ]%%
 
@@ -29,8 +31,8 @@
   IF RowCount(@rs) > 0 THEN
 
     FOR @publicationListIndex = 1 TO RowCount(@publicationLists) DO
-      Set @publicationListTitle = Field(Row(@publicationLists,@index),"Title")
-      Set @publicationListCRMFieldName = Field(Row(@publicationLists,@index),"CRM_Field_Name")
+      Set @publicationListTitle = Field(Row(@publicationLists,@publicationListIndex),"Title")
+      Set @publicationListCRMFieldName = Field(Row(@publicationLists,@publicationListIndex),"CRM_Field_Name")
       Set @publicationListValue = Field(Row(@rs,1),@publicationListCRMFieldName)
       //Add object to array
       Set @resultsObject = Concat(@resultsObject,"{""Title"":""",@publicationListTitle,""",""Value"":""",@publicationListValue,"""}",Iif(@index == RowCount(@publicationLists),"",","))
