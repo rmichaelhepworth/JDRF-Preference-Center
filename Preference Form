@@ -68,5 +68,4 @@
 <b>Result Object String:</b>&nbsp;&nbsp; %%=V(@settingsObject)=%%</br></br>
 
 TEST 4
-
 </html>
