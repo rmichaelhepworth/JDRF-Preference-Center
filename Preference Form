@@ -2,7 +2,7 @@
 %%[
 	var @messageContext,@contactKey,@firstName,@lastName
 	var @monthlyNewsletter,@AdvocacyNewsletter,@researchNewsletter,@chapterUpdates
-  var @resultsObject,@publicationLists,@contactFields
+  var @settingsObject,@publicationLists,@contactFields
 
   Set @publicationLists = LookupOrderedRows("Publication Lists",-1,"Order","Active",1);
 
@@ -27,7 +27,7 @@
 
 %%[
 	Set @rs= RetrieveSalesforceObjects('Contact', @contactFields, 'Id', '=', @contactKey);
-  Set @resultsObject = "{""publicationListValues"":[";
+  Set @settingsObject = "[";
   IF RowCount(@rs) > 0 THEN
 
     FOR @publicationListIndex = 1 TO RowCount(@publicationLists) DO
@@ -35,18 +35,18 @@
       Set @publicationListCRMFieldName = Field(Row(@publicationLists,@publicationListIndex),"CRM_Field_Name")
       Set @publicationListValue = Field(Row(@rs,1),@publicationListCRMFieldName)
       //Add object to array
-      Set @resultsObject = Concat(@resultsObject,"{""Title"":""",@publicationListTitle,""",""Value"":""",@publicationListValue,"""}",Iif(@index == RowCount(@publicationLists),"",","))
+      Set @settingsObject = Concat(@settingsObject,"{""Title"":""",@publicationListTitle,""",""Value"":""",@publicationListValue,"""}",Iif(@index == RowCount(@publicationLists),"",","))
     NEXT @publicationListIndex
 
 		Set @firstName = Field(Row(@rs,1),'FirstName');
 		Set @lastName = Field(Row(@rs,1),'LastName');
     ENDIF
-  Set @resultsObject = Concat(@resultsObject,"]}");
+  Set @settingsObject = Concat(@settingsObject,"]");
 ]%%
 
 <script runat=server>
     Platform.Load("Core","1");
-    eval("responseObject = " + Variable.GetValue("@resultsObject"));
+    eval("responseObject.publicationListSettings = " + Variable.GetValue("@settingsObject"));
     responseObject.contactKey = Variable.GetValue("@contactKey");
     Platform.Response.Write(Stringify(responseObject));
 	}
@@ -65,8 +65,8 @@
 <b>Contact Key Passed:</b>&nbsp;&nbsp; %%=V(@contactKey)=%%</br></br>
 <b>Contact Fields:</b>&nbsp;&nbsp;  %%=V(@ContactFields)=%%</br></br>
 <b>Rows Returned:</b>&nbsp;&nbsp;  %%=RowCount(@rs)=%%</br></br>
-<b>Result Object String:</b>&nbsp;&nbsp; %%=V(@resultsObject)=%%</br></br>
+<b>Result Object String:</b>&nbsp;&nbsp; %%=V(@settingsObject)=%%</br></br>
 
-TEST 3
+TEST 4
 
 </html>
