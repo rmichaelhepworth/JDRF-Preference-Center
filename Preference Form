@@ -35,12 +35,12 @@
       Set @publicationListCRMFieldName = Field(Row(@publicationLists,@publicationListIndex),"CRM_Field_Name")
       Set @publicationListValue = Field(Row(@rs,1),@publicationListCRMFieldName)
       //Add object to array
-      Set @settingsObject = Concat(@settingsObject,"{""Title"":""",@publicationListTitle,""",""Value"":""",@publicationListValue,"""}",Iif(@index == RowCount(@publicationLists),"",","))
+      Set @settingsObject = Concat(@settingsObject,"{""Title"":""",@publicationListTitle,""",""Value"":""",@publicationListValue,"""}",Iif(@publicationListIndex == RowCount(@publicationLists),"",","))
     NEXT @publicationListIndex
 
 		Set @firstName = Field(Row(@rs,1),'FirstName');
 		Set @lastName = Field(Row(@rs,1),'LastName');
-    ENDIF
+  ENDIF
   Set @settingsObject = Concat(@settingsObject,"]");
 ]%%
 
@@ -67,5 +67,5 @@
 <b>Rows Returned:</b>&nbsp;&nbsp;  %%=RowCount(@rs)=%%</br></br>
 <b>Result Object String:</b>&nbsp;&nbsp; %%=V(@settingsObject)=%%</br></br>
 
-TEST 4
+TEST 5
 </html>
