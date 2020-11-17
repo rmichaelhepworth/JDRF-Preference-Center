@@ -46,8 +46,10 @@
 
 <script runat=server>
     Platform.Load("Core","1");
-    eval("responseObject.publicationListSettings = " + Variable.GetValue("@settingsObject"));
     responseObject.contactKey = Variable.GetValue("@contactKey");
+    responseObject.firstName = Variable.GetValue("@firstName");
+    responseObject.lastName = Variable.GetValue("@lastName");
+    eval("responseObject.publicationListSettings = " + Variable.GetValue("@settingsObject"));
     Platform.Response.Write(Stringify(responseObject));
 	}
 	catch(e)
@@ -67,5 +69,5 @@
 <b>Rows Returned:</b>&nbsp;&nbsp;  %%=RowCount(@rs)=%%</br></br>
 <b>Result Object String:</b>&nbsp;&nbsp; %%=V(@settingsObject)=%%</br></br>
 
-TEST 5
+TEST 6
 </html>
