@@ -4,7 +4,7 @@
 </head>
 <body>
 
-TEST 5
+TEST 6
 <form action="#" method="post" target="self">
 <script runat=server>
 
@@ -16,7 +16,7 @@ TEST 5
 
   try
   {
-    requestURL = "http://cloud.content.jdrf.org/preferencesajax?contactKey" + GetQueryStringParameter("contactKey");
+    requestURL = "http://cloud.content.jdrf.org/preferencesajax?contactKey" + Request.GetQueryStringParameter("contactKey");
     responseObjectString = HTTP.Get(requestURL);
     eval("responseObject = " + responseObjectString);
 
