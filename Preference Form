@@ -1,7 +1,6 @@
 <script runat=server>
 	Platform.Load("Core","1");
   var responseObject;
-  var responseObjectString;
 	try
 	{
     responseObjectString = HTTP.Get('http://cloud.content.jdrf.org/preferencesajax?contactKey=' + GetQueryStringParameter('contactKey'));
