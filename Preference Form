@@ -7,22 +7,19 @@
 TEST 3
 <form action="#" method="post" target="self">
 <script runat=server>
+
   Platform.Load("Core","1");
+
   var responseObject;
   var responseObjectString;
   var requestURL;
+
   try
   {
     requestURL = "http://cloud.content.jdrf.org/preferencesajax?contactKey" + GetQueryStringParameter("contactKey");
-    responseObjectString = HTTP.Get();
+    responseObjectString = HTTP.Get(requestURL);
     eval("responseObject = " + responseObjectString);
-  }
-  catch(e)
-  {
-    responseObject.error = e.message;
-  }
-  finally
-  {
+
     Platform.Response.Write("Request URL: " + requestURL + "</br></br>");
     Platform.Response.Write("Response Object String: " + responseObjectString + "</br></br>");
 
@@ -30,7 +27,13 @@ TEST 3
     for (index = 1; index <= responseObject.publicationListSettings.length; index++) {
         Platform.Response.Write("<input type=\"checkbox\"" + "/>" + responseObject.publicationLists[index].Title + "</br></br>");
     }
+
   }
+  catch(e)
+  {
+    responseObject.error = e.message;
+  }
+
 </script>
 </form>
 </body>
