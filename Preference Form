@@ -1,9 +1,11 @@
 <script runat=server>
 	Platform.Load("Core","1");
   var responseObject;
+  var responseObjectString;
 	try
 	{
-    eval("responseObject = HTTP.Get(\'http://cloud.content.jdrf.org/preferencesajax?contactKey=\' + GetQueryStringParameter(\'contactKey\'))");
+    responseObjectString = HTTP.Get('http://cloud.content.jdrf.org/preferencesajax?contactKey=' + GetQueryStringParameter('contactKey'));
+    eval("responseObject = " + responseObjectString);
 	}
 	catch(e)
 	{
@@ -21,6 +23,7 @@ TEST 1
 
 <form action="#" method="post" target="self">
 <script runat=server>
+Platform.Response.Write(responseObjectString + "</br></br>");
 var index;
 for (index = 1; index <= responseObject.publicationListSettings.length; index++) {
     Platform.Response.Write("<input type=\"checkbox\"" + "/>" + responseObject.publicationLists[index].Title + "</br></br>");
