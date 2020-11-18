@@ -5,7 +5,6 @@
 <body>
 
 TEST 2
-
 <form action="#" method="post" target="self">
 <script runat=server>
   Platform.Load("Core","1");
