@@ -4,7 +4,7 @@
 </head>
 <body>
 
-TEST 3
+TEST 4
 <form action="#" method="post" target="self">
 <script runat=server>
 
