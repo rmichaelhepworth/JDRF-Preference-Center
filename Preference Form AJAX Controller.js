@@ -15,9 +15,7 @@
   FOR @publicationListIndex = 1 TO RowCount(@publicationLists) DO
     Set @ContactFields = Concat(Iif(Empty(@ContactFields),"",Concat(@ContactFields,",")),Field(Row(@publicationLists,@publicationListIndex),"CRM_Field_Name"))
   NEXT @publicationListIndex
-
 ]%%
-
 <script runat=server>
 	Platform.Load("Core","1");
 
@@ -25,10 +23,8 @@
 
 	try
 	{
-
 		Variable.SetValue("@contactKey",Platform.Request.GetQueryStringParameter('contactKey'));
 </script>
-
 %%[
 	Set @rs= RetrieveSalesforceObjects('Contact', @contactFields, 'Id', '=', @contactKey);
   Set @settingsObject = "[";
@@ -47,7 +43,6 @@
   ENDIF
   Set @settingsObject = Concat(@settingsObject,"]");
 ]%%
-
 <script runat=server>
     responseObject.contactKey = Variable.GetValue("@contactKey");
     responseObject.firstName = Variable.GetValue("@firstName");
