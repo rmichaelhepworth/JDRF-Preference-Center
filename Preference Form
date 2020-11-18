@@ -4,7 +4,7 @@
 </head>
 <body>
 
-TEST 4
+TEST 5
 <form action="#" method="post" target="self">
 <script runat=server>
 
@@ -32,6 +32,7 @@ TEST 4
   catch(e)
   {
     responseObject.error = e.message;
+    Platform.Response.Write("Error: " + e.message + "</br></br>");
   }
 
 </script>
