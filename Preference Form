@@ -1,13 +1,3 @@
-
-%%[
-
-	Set @messageContext = [_messagecontext]
-  Set @agent = HTTPRequestHeader('User-Agent')
-  Set @referrer = HTTPRequestHeader('Referer')
-  Set @host = HTTPRequestHeader('Host')
-
-]%%
-
 <script runat=server>
 	Platform.Load("Core","1");
   var responseObject;
@@ -19,6 +9,7 @@
 	{
 		responseObject.error = e.message;
 	}
+</script>
 
 <html>
 <head>
