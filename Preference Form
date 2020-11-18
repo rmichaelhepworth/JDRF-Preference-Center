@@ -23,10 +23,6 @@ TEST 6
     Platform.Response.Write("Request URL: " + requestURL + "</br></br>");
     Platform.Response.Write("Response Object String: " + responseObjectString + "</br></br>");
 
-    var index;
-    for (index = 1; index <= responseObject.publicationListSettings.length; index++) {
-        Platform.Response.Write("<input type=\"checkbox\"" + "/>" + responseObject.publicationLists[index].Title + "</br></br>");
-    }
 
   }
   catch(e)
