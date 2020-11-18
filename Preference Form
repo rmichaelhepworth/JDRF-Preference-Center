@@ -24,7 +24,7 @@ TEST 1
   /*  eval("responseObject = " + responseObjectString); */
 
     Platform.Response.Write("Request URL: " + requestURL + "</br></br>");
-    Platform.Response.Write("Response Object String: " + responseContent + "</br></br>");
+    Platform.Response.Write(response.Content);
 /*
     var index;
     for (index = 1; index <= responseObject.publicationListSettings.length; index++) {
