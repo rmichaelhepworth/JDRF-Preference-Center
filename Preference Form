@@ -3,7 +3,7 @@
   var responseObject;
 	try
 	{
-    responseObject = HTTP.Get("http://cloud.content.jdrf.org/preferencesajax?contactKey=" + GetQueryStringParameter('contactKey'));
+    eval("responseObject = HTTP.Get(\'http://cloud.content.jdrf.org/preferencesajax?contactKey=\' + GetQueryStringParameter(\'contactKey\'))");
 	}
 	catch(e)
 	{
