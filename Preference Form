@@ -4,7 +4,7 @@
 </head>
 <body>
 
-TEST 5
+TEST 6
 <form action="#" method="post" target="self">
 <script runat=server>
 
@@ -18,7 +18,7 @@ TEST 5
   try
   {
     requestURL = "http://cloud.content.jdrf.org/preferencesajax?contactKey=" + Request.GetQueryStringParameter("contactKey");
-    response = HTTP.Get(requestURL);
+    response = HTTP.Get(requestURL,["Accept","Accept-Encoding"],["application/json","gzip, deflate"]);
     responseObject = response.Content;
 
     Platform.Response.Write("Request URL: " + requestURL + "</br></br>");
