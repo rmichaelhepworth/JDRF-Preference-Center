@@ -60,7 +60,7 @@
 	}
   finally
   {
-    Platform.Response.SetResponseHeader("Content-Type","application/json charset=utf-8");
+    Platform.Response.SetResponseHeader("Content-Type","application/json");
     Platform.Response.Write(Stringify(responseObject));
   }
 </script>
