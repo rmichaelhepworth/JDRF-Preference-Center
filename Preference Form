@@ -25,7 +25,7 @@ TEST 2 <br>
     for (index = 0; index <= responseObject.publicationListSettings.length - 1; index++) {
       var checked = "";
       if (responseObject.publicationListSettings[index].Value == "true") {checked = "checked"};
-      Platform.Response.Write("<input type=\"checkbox\"" + checked + " />" + responseObject.publicationListSettings[index].Title + "</br></br>");
+      Platform.Response.Write("<input type=\"checkbox\" class=\"preferenceoption\" name=\"" + responseObject.publicationListSettings[index].CRMFieldName + "\"" + checked + " />" + responseObject.publicationListSettings[index].Title + "</br></br>");
     }
 
   }
