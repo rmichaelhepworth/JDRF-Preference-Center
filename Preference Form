@@ -29,6 +29,7 @@ TEST 7 <br><br>
     }
 
     Platform.Response.Write("<input type=\"hidden\" value=\""+ responseObject.contactKey + "\" name=\"subscriberkey\"/>");
+    Platform.Response.Write("<input type=\"hidden\" value=\"update\" name=\"action\"/>");
   }
   catch(e)
   {
