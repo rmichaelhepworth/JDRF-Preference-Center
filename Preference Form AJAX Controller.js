@@ -21,32 +21,21 @@
 		Variable.SetValue("@action",Platform.Request.GetQueryStringParameter('action'));
 </script>
 %%[
-	IF (@action == "update") THEN
-		var @updateRecord
-		set @updateRecord = UpdateSingleSalesforceObject(
-		"Contact", @contactKey,
-		"FirstName", @firstname,
-		"LastName", @lastName,
-		"Email", @email
-	 	)
-	 ELSE
-	 Set @rs= RetrieveSalesforceObjects('Contact', @contactFields, 'Id', '=', @contactKey);
-		Set @settingsObject = "[";
-		IF RowCount(@rs) > 0 THEN
-			FOR @publicationListIndex = 1 TO RowCount(@publicationLists) DO
-				Set @publicationListTitle = Field(Row(@publicationLists,@publicationListIndex),"Title")
-				Set @publicationListCRMFieldName = Field(Row(@publicationLists,@publicationListIndex),"CRM_Field_Name")
-				Set @publicationListValue = Field(Row(@rs,1),@publicationListCRMFieldName)
-				//Add object to array
-				Set @settingsObject = Concat(@settingsObject,"{""Title"":""",@publicationListTitle,""",""CRMFieldName"":""",@publicationListCRMFieldName,""",""Value"":""",@publicationListValue,"""}",Iif(@publicationListIndex == RowCount(@publicationLists),"",","))
-			NEXT @publicationListIndex
+	Set @rs= RetrieveSalesforceObjects('Contact', @contactFields, 'Id', '=', @contactKey);
+  Set @settingsObject = "[";
+  IF RowCount(@rs) > 0 THEN
+    FOR @publicationListIndex = 1 TO RowCount(@publicationLists) DO
+      Set @publicationListTitle = Field(Row(@publicationLists,@publicationListIndex),"Title")
+      Set @publicationListCRMFieldName = Field(Row(@publicationLists,@publicationListIndex),"CRM_Field_Name")
+      Set @publicationListValue = Field(Row(@rs,1),@publicationListCRMFieldName)
+      //Add object to array
+      Set @settingsObject = Concat(@settingsObject,"{""Title"":""",@publicationListTitle,""",""CRMFieldName"":""",@publicationListCRMFieldName,""",""Value"":""",@publicationListValue,"""}",Iif(@publicationListIndex == RowCount(@publicationLists),"",","))
+    NEXT @publicationListIndex
 
-		 Set @firstName = Field(Row(@rs,1),'FirstName');
-		 Set @lastName = Field(Row(@rs,1),'LastName');
-		ENDIF
-		Set @settingsObject = Concat(@settingsObject,"]");
-	ENDIF
-
+		Set @firstName = Field(Row(@rs,1),'FirstName');
+		Set @lastName = Field(Row(@rs,1),'LastName');
+  ENDIF
+  Set @settingsObject = Concat(@settingsObject,"]");
 ]%%
 <script runat=server>
     responseObject.contactKey = Variable.GetValue("@contactKey");
