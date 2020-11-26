@@ -4,7 +4,7 @@
 </head>
 <body>
 
-TEST 4 <br><br>
+TEST 5 <br><br>
 <form action="#" method="post" target="self">
 <script runat=server>
 
@@ -28,7 +28,7 @@ TEST 4 <br><br>
       Platform.Response.Write("<input type=\"checkbox\" class=\"preferenceoption\" name=\"" + responseObject.publicationListSettings[index].CRMFieldName + "\"" + checked + " />" + responseObject.publicationListSettings[index].Title + "</br></br>");
     }
 
-    Platform.Response.Write("<input type=\"hidden\" value=\""+ responseObject.contactKey + "\" name=\"subscriberkey\"");
+    Platform.Response.Write("<input type=\"hidden\" value=\""+ responseObject.contactKey + "\" name=\"subscriberkey\"/>");
   }
   catch(e)
   {
