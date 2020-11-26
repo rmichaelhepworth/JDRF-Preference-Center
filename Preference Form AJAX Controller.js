@@ -28,7 +28,7 @@
 	  "Contact", @contactKey,
 	  "Mkto_Research_News__c","false"
 	  )
-	ELSE
+	ENDIF
 	 Set @rs= RetrieveSalesforceObjects('Contact', @contactFields, 'Id', '=', @contactKey);
 	  IF RowCount(@rs) > 0 THEN
 	    FOR @publicationListIndex = 1 TO RowCount(@publicationLists) DO
@@ -41,8 +41,7 @@
 
 	    Set @firstName = Field(Row(@rs,1),'FirstName');
 	    Set @lastName = Field(Row(@rs,1),'LastName');
-	  ENDIF
-	ENDIF
+		ENDIF
 	Set @settingsObject = Concat(@settingsObject,"]");
 ]%%
 <script runat=server>
