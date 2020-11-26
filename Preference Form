@@ -10,7 +10,7 @@ TEST 9
 
   Platform.Load("Core","1");
 
-  var responseObject;
+  var responseObject = {};
   var response;
   var responseContent;
   var requestURL;
@@ -19,7 +19,7 @@ TEST 9
   {
     requestURL = "http://cloud.content.jdrf.org/preferencesajax?contactKey=" + Request.GetQueryStringParameter("contactKey");
     response = HTTP.Get(requestURL,["Accept","Accept-Encoding"],["application/json","gzip, deflate"]);
-    responseObject = response.Content;
+    eval("responseObject = " + response.Content);
 
     Platform.Response.Write("Request URL: " + requestURL + "</br></br>");
     Platform.Response.Write(responseObject.contactKey);
