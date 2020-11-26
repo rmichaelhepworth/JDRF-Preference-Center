@@ -48,6 +48,7 @@
     responseObject.contactKey = Variable.GetValue("@contactKey");
     responseObject.firstName = Variable.GetValue("@firstName");
     responseObject.lastName = Variable.GetValue("@lastName");
+		responseObject.action = Variable.GetValue("@action");
     eval("responseObject.publicationListSettings = " + Variable.GetValue("@settingsObject"));
 	}
 	catch(e)
