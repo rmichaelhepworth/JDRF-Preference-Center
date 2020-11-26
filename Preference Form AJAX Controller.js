@@ -26,7 +26,7 @@
 	  var @updateRecord
 	  set @updateRecord = UpdateSingleSalesforceObject(
 	  "Contact", @contactKey,
-	  "Mkto_Research_News__c",Iif(Empty(RequestParameter("Mkto_Research_News__c")),"false","true")
+	  "Mkto_Research_News__c",Iif(Empty(RequestParameter("Mkto_Research_News__c")),"true","false")
 	  )
 	ENDIF
 	Set @rs= RetrieveSalesforceObjects('Contact', @contactFields, 'Id', '=', @contactKey);
