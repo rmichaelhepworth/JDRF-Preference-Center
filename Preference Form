@@ -22,7 +22,7 @@ TEST 2 <br>
     eval("responseObject = " + response.Content);
 
     var index;
-    for (index = 0; index <= responseObject.publicationListSettings.length; index++) {
+    for (index = 0; index <= responseObject.publicationListSettings.length - 1; index++) {
       var checked = "";
       if (responseObject.publicationListSettings[index].Value == "true") {checked = "checked"};
       Platform.Response.Write("<input type=\"checkbox\"" + checked + " />" + responseObject.publicationListSettings[index].Title + "</br></br>");
