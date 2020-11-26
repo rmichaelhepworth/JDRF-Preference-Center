@@ -4,7 +4,7 @@
 </head>
 <body>
 
-TEST 11
+TEST 1
 <form action="#" method="post" target="self">
 <script runat=server>
 
@@ -21,12 +21,8 @@ TEST 11
     response = HTTP.Get(requestURL,["Accept","Accept-Encoding"],["application/json","gzip, deflate"]);
     eval("responseObject = " + response.Content);
 
-    Platform.Response.Write("Request URL: " + requestURL + "</br></br>");
-    Platform.Response.Write(responseObject.contactKey);
-
-
     var index;
-    for (index = 1; index <= responseObject.publicationListSettings.length; index++) {
+    for (index = 0; index <= responseObject.publicationListSettings.length; index++) {
         Platform.Response.Write("<input type=\"checkbox\"" + "/>" + responseObject.publicationListSettings[index].Title + "</br></br>");
     }
 
