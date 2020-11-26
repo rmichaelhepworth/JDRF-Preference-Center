@@ -4,7 +4,7 @@
 </head>
 <body>
 
-TEST 6
+TEST 7
 <form action="#" method="post" target="self">
 <script runat=server>
 
@@ -22,7 +22,7 @@ TEST 6
     responseObject = response.Content;
 
     Platform.Response.Write("Request URL: " + requestURL + "</br></br>");
-    Platform.Response.Write(Stringify(responseObject));
+    Platform.Response.Write(responseObject);
 /*
     var index;
     for (index = 1; index <= responseObject.publicationListSettings.length; index++) {
