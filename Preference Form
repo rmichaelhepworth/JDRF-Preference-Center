@@ -4,7 +4,7 @@
 </head>
 <body>
 
-TEST 10
+TEST 11
 <form action="#" method="post" target="self">
 <script runat=server>
 
@@ -27,7 +27,7 @@ TEST 10
 
     var index;
     for (index = 1; index <= responseObject.publicationListSettings.length; index++) {
-        Platform.Response.Write("<input type=\"checkbox\"" + "/>" + responseObject.publicationLists[index].Title + "</br></br>");
+        Platform.Response.Write("<input type=\"checkbox\"" + "/>" + responseObject.publicationListSettings[index].Title + "</br></br>");
     }
 
   }
@@ -38,6 +38,7 @@ TEST 10
   }
 
 </script>
+<input type="submit"/>
 </form>
 </body>
 </html>
