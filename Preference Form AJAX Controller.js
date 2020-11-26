@@ -1,7 +1,7 @@
 %%[
 	var @messageContext,@contactKey,@firstName,@lastName
 	var @monthlyNewsletter,@AdvocacyNewsletter,@researchNewsletter,@chapterUpdates
-  var @settingsObject,@publicationLists,@contactFields,@referrer,@agent
+  var @settingsObject,@publicationLists,@contactFields,@referrer,@agent,@action
   Set @publicationLists = LookupOrderedRows("Publication Lists",-1,"Order","Active",1);
 	Set @messageContext = [_messagecontext]
   Set @agent = HTTPRequestHeader('User-Agent')
@@ -18,6 +18,7 @@
 	try
 	{
 		Variable.SetValue("@contactKey",Platform.Request.GetQueryStringParameter('contactKey'));
+		Variable.SetValue("@action",Platform.Request.GetQueryStringParameter('action'));
 </script>
 %%[
 	Set @settingsObject = "[";
