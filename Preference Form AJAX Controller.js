@@ -2,25 +2,19 @@
 	var @messageContext,@contactKey,@firstName,@lastName
 	var @monthlyNewsletter,@AdvocacyNewsletter,@researchNewsletter,@chapterUpdates
   var @settingsObject,@publicationLists,@contactFields,@referrer,@agent
-
   Set @publicationLists = LookupOrderedRows("Publication Lists",-1,"Order","Active",1);
-
 	Set @messageContext = [_messagecontext]
   Set @agent = HTTPRequestHeader('User-Agent')
   Set @referrer = HTTPRequestHeader('Referer')
   Set @host = HTTPRequestHeader('Host')
-
   Set @contactFields = 'Id, FirstName,LastName'
-
   FOR @publicationListIndex = 1 TO RowCount(@publicationLists) DO
     Set @ContactFields = Concat(Iif(Empty(@ContactFields),"",Concat(@ContactFields,",")),Field(Row(@publicationLists,@publicationListIndex),"CRM_Field_Name"))
   NEXT @publicationListIndex
 ]%%
 <script runat=server>
 	Platform.Load("Core","1");
-
   var responseObject = {};
-
 	try
 	{
 		Variable.SetValue("@contactKey",Platform.Request.GetQueryStringParameter('contactKey'));
@@ -29,7 +23,6 @@
 	Set @rs= RetrieveSalesforceObjects('Contact', @contactFields, 'Id', '=', @contactKey);
   Set @settingsObject = "[";
   IF RowCount(@rs) > 0 THEN
-
     FOR @publicationListIndex = 1 TO RowCount(@publicationLists) DO
       Set @publicationListTitle = Field(Row(@publicationLists,@publicationListIndex),"Title")
       Set @publicationListCRMFieldName = Field(Row(@publicationLists,@publicationListIndex),"CRM_Field_Name")
@@ -56,6 +49,6 @@
   finally
   {
     Platform.Response.SetResponseHeader("Content-Type","application/json");
-    Platform.Response.Write(Stringify(responseObject));
+    Platform.Response.Write(Trim(Stringify(responseObject)));
   }
 </script>

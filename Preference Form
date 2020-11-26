@@ -22,7 +22,7 @@ TEST 6
     responseObject = response.Content;
 
     Platform.Response.Write("Request URL: " + requestURL + "</br></br>");
-    Platform.Response.Write(Stringify(responseObject));
+    Platform.Response.Write(Trim(responseObject));
 /*
     var index;
     for (index = 1; index <= responseObject.publicationListSettings.length; index++) {
