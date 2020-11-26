@@ -25,7 +25,7 @@
 	  var @updateRecord
 	  set @updateRecord = UpdateSingleSalesforceObject(
 	  "Contact", @contactKey,
-	  "Mkto_Research_News__c",Iif(RequestParameter('Mkto_Research_News__c' == 'Mkto_Research_News__c',"1","0"))
+	  "Mkto_Research_News__c","false"
 	  )
 	ELSE
 	 Set @rs= RetrieveSalesforceObjects('Contact', @contactFields, 'Id', '=', @contactKey);
