@@ -7,10 +7,6 @@
   Set @agent = HTTPRequestHeader('User-Agent')
   Set @referrer = HTTPRequestHeader('Referer')
   Set @host = HTTPRequestHeader('Host')
-  Set @contactFields = 'Id, FirstName,LastName'
-  FOR @publicationListIndex = 1 TO RowCount(@publicationLists) DO
-    Set @ContactFields = Concat(Iif(Empty(@ContactFields),"",Concat(@ContactFields,",")),Field(Row(@publicationLists,@publicationListIndex),"CRM_Field_Name"))
-  NEXT @publicationListIndex
 ]%%
 <script runat=server>
 	Platform.Load("Core","1");
@@ -21,26 +17,31 @@
 </script>
 %%[
 	Set @formAction = RequestParameter('formAction')
-	Set @settingsObject = "[";
 	IF (@formAction == 'update') THEN
 	  var @updateRecord
 	  set @updateRecord = UpdateSingleSalesforceObject(
 	  "Contact", @contactKey,
 	  "Mkto_Research_News__c",Iif(RequestParameter("Mkto_Research_News__c") == "true","true","false")
 	  )
-	ENDIF
-	Set @rs= RetrieveSalesforceObjects('Contact', @contactFields, 'Id', '=', @contactKey);
-	IF RowCount(@rs) > 0 THEN
-	  FOR @publicationListIndex = 1 TO RowCount(@publicationLists) DO
-	    Set @publicationListTitle = Field(Row(@publicationLists,@publicationListIndex),"Title")
-	    Set @publicationListCRMFieldName = Field(Row(@publicationLists,@publicationListIndex),"CRM_Field_Name")
-	    Set @publicationListValue = Field(Row(@rs,1),@publicationListCRMFieldName)
-	    //Add object to array
-	    Set @settingsObject = Concat(@settingsObject,"{""Title"":""",@publicationListTitle,""",""CRMFieldName"":""",@publicationListCRMFieldName,""",""Value"":""",@publicationListValue,"""}",Iif(@publicationListIndex == RowCount(@publicationLists),"",","))
+	ELSE
+		Set @settingsObject = "[";
+		Set @contactFields = 'Id, FirstName,LastName'
+		FOR @publicationListIndex = 1 TO RowCount(@publicationLists) DO
+			Set @ContactFields = Concat(Iif(Empty(@ContactFields),"",Concat(@ContactFields,",")),Field(Row(@publicationLists,@publicationListIndex),"CRM_Field_Name"))
 		NEXT @publicationListIndex
+		Set @rs= RetrieveSalesforceObjects('Contact', @contactFields, 'Id', '=', @contactKey);
+		IF RowCount(@rs) > 0 THEN
+		  FOR @publicationListIndex = 1 TO RowCount(@publicationLists) DO
+		    Set @publicationListTitle = Field(Row(@publicationLists,@publicationListIndex),"Title")
+		    Set @publicationListCRMFieldName = Field(Row(@publicationLists,@publicationListIndex),"CRM_Field_Name")
+		    Set @publicationListValue = Field(Row(@rs,1),@publicationListCRMFieldName)
+		    //Add object to array
+		    Set @settingsObject = Concat(@settingsObject,"{""Title"":""",@publicationListTitle,""",""CRMFieldName"":""",@publicationListCRMFieldName,""",""Value"":""",@publicationListValue,"""}",Iif(@publicationListIndex == RowCount(@publicationLists),"",","))
+			NEXT @publicationListIndex
 
-	  Set @firstName = Field(Row(@rs,1),'FirstName');
-	  Set @lastName = Field(Row(@rs,1),'LastName');
+		  Set @firstName = Field(Row(@rs,1),'FirstName');
+		  Set @lastName = Field(Row(@rs,1),'LastName');
+		ENDIF
 	ENDIF
 	Set @settingsObject = Concat(@settingsObject,"]");
 ]%%

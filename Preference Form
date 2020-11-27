@@ -4,7 +4,7 @@
   </head>
   <body>
       TEST 10 <br><br>
-      <form action="#" method="post">
+      <form action="/preferencesajax" method="post">
       <script runat=server>
 
         Platform.Load("Core","1");
@@ -15,7 +15,8 @@
 
         try
         {
-          requestURL = "http://cloud.content.jdrf.org/preferencesajax?contactKey=" + Request.GetQueryStringParameter("contactKey");
+          requestURL = "http://cloud.content.jdrf.org/preferencesajax?contactKey=" + Request.GetQueryStringParameter("contactKey") + "&formAction=" + Request.GetFormField("formAction");
+
           response = HTTP.Get(requestURL,["Accept","Accept-Encoding"],["application/json","gzip, deflate"]);
           eval("responseObject = " + response.Content);
           Platform.Response.Write("Preferences for " + responseObject.firstName + " " + responseObject.lastName + "<br><br>");
