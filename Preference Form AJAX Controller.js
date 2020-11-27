@@ -18,9 +18,9 @@
 	try
 	{
 		Variable.SetValue("@contactKey",Platform.Request.GetQueryStringParameter('contactKey'));
-		Variable.SetValue("@action",Platform.Request.GetQueryStringParameter('action'));
 </script>
 %%[
+	Set @action = RequestParameter('action')
 	Set @settingsObject = "[";
 	IF (@action == 'update') THEN
 	  var @updateRecord
