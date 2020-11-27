@@ -1,7 +1,7 @@
 %%[
 	var @messageContext,@contactKey,@firstName,@lastName
 	var @monthlyNewsletter,@AdvocacyNewsletter,@researchNewsletter,@chapterUpdates
-  var @settingsObject,@publicationLists,@contactFields,@referrer,@agent,@action
+  var @settingsObject,@publicationLists,@contactFields,@referrer,@agent,@formAction
   Set @publicationLists = LookupOrderedRows("Publication Lists",-1,"Order","Active",1);
 	Set @messageContext = [_messagecontext]
   Set @agent = HTTPRequestHeader('User-Agent')
@@ -20,9 +20,9 @@
 		Variable.SetValue("@contactKey",Platform.Request.GetQueryStringParameter('contactKey'));
 </script>
 %%[
-	Set @action = RequestParameter('action')
+	Set @formAction = RequestParameter('action')
 	Set @settingsObject = "[";
-	IF (@action == 'update') THEN
+	IF (@formAction == 'update') THEN
 	  var @updateRecord
 	  set @updateRecord = UpdateSingleSalesforceObject(
 	  "Contact", @contactKey,
@@ -48,7 +48,7 @@
     responseObject.contactKey = Variable.GetValue("@contactKey");
     responseObject.firstName = Variable.GetValue("@firstName");
     responseObject.lastName = Variable.GetValue("@lastName");
-		responseObject.action = Variable.GetValue("@action");
+		responseObject.formAction = Variable.GetValue("@formAction");
     eval("responseObject.publicationListSettings = " + Variable.GetValue("@settingsObject"));
 	}
 	catch(e)
