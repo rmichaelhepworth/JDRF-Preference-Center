@@ -34,8 +34,9 @@
           responseObject.error = e.message;
           Platform.Response.Write("Error: " + e.message + "</br></br>");
         }
-        Platform.Response.Write(responseObject);
+        Platform.Response.Write(Stringify(responseObject));
       </script>
+      <br>
       <input type="submit"/>
     </form>
   </body>
