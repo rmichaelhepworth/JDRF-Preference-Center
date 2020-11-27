@@ -22,6 +22,7 @@
 	  "Contact", @contactKey,
 	  "Mkto_Research_News__c",Iif(RequestParameter("Mkto_Research_News__c") == "true","true","false")
 	  )
+		Redirect(Concat('/preferences?contactKey=', @formAction))
 	ELSE
 		Set @contactKey = RequestParameter('contactKey')
 		Set @settingsObject = "[";
