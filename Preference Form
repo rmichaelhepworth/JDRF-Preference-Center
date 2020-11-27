@@ -24,7 +24,7 @@
           for (index = 0; index <= responseObject.publicationListSettings.length - 1; index++) {
             var checked = "";
             if (responseObject.publicationListSettings[index].Value == "true") {checked = "checked"};
-            Platform.Response.Write("<input type=\"checkbox\" class=\"preferenceoption\" name=\"" + responseObject.publicationListSettings[index].CRMFieldName + "\"" + checked + " value=\"" + responseObject.publicationListSettings[index].Value + "\"/>" + responseObject.publicationListSettings[index].Title + "</br></br>");
+            Platform.Response.Write("<input type=\"checkbox\" class=\"preferenceoption\" name=\"" + responseObject.publicationListSettings[index].CRMFieldName + "\"" + checked + " value=\"" + responseObject.publicationListSettings[index].CRMFieldName + "\"/>" + responseObject.publicationListSettings[index].Title + "</br></br>");
           }
 
           Platform.Response.Write("<input type=\"hidden\" value=\""+ responseObject.contactKey + "\" name=\"subscriberkey\"/>");
