@@ -27,7 +27,7 @@
             Platform.Response.Write("<input type=\"checkbox\" class=\"preferenceoption\" name=\"" + responseObject.publicationListSettings[index].CRMFieldName + "\"" + checked + " value=\"" + responseObject.publicationListSettings[index].CRMFieldName + "\"/>" + responseObject.publicationListSettings[index].Title + "</br></br>");
           }
 
-          Platform.Response.Write("<input type=\"hidden\" value=\""+ responseObject.contactKey + "\" name=\"subscriberkey\"/>");
+          Platform.Response.Write("<input type=\"hidden\" value=\""+ responseObject.contactKey + "\" name=\"contactKey\"/>");
           Platform.Response.Write("<input type=\"hidden\" value=\"update\" name=\"formAction\"/>");
         }
         catch(e)
