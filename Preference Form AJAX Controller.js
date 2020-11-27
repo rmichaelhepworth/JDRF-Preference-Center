@@ -15,6 +15,7 @@
 	{
 </script>
 %%[
+	Set @contactKey = RequestParameter('contactKey')
 	Set @formAction = RequestParameter('formAction')
 	IF (@formAction == 'update') THEN
 	  var @updateRecord
@@ -24,7 +25,6 @@
 	  )
 		Redirect(Concat("/preferences?contactKey=", @contactKey))
 	ELSE
-		Set @contactKey = RequestParameter('contactKey')
 		Set @settingsObject = "[";
 		Set @contactFields = 'Id, FirstName,LastName'
 		FOR @publicationListIndex = 1 TO RowCount(@publicationLists) DO
