@@ -1,44 +1,43 @@
 <html>
-<head>
-  <meta http-equiv="pragma" content="no-cache" />
-</head>
-<body>
+  <head>
+    <meta http-equiv="pragma" content="no-cache" />
+  </head>
+  <body>
+      TEST 9 <br><br>
+      <form action="#" method="post">
+      <script runat=server>
 
-TEST 9 <br><br>
-<form action="#" method="post">
-<script runat=server>
+        Platform.Load("Core","1");
 
-  Platform.Load("Core","1");
+        var responseObject = {};
+        var response;
+        var responseContent;
+        var requestURL;
 
-  var responseObject = {};
-  var response;
-  var responseContent;
-  var requestURL;
+        try
+        {
+          requestURL = "http://cloud.content.jdrf.org/preferencesajax?contactKey=" + Request.GetQueryStringParameter("contactKey");
+          response = HTTP.Get(requestURL,["Accept","Accept-Encoding"],["application/json","gzip, deflate"]);
+          eval("responseObject = " + response.Content);
+          Platform.Response.Write("Preferences for " + responseObject.firstName + " " + responseObject.lastName + "<br><br>");
+          var index;
+          for (index = 0; index <= responseObject.publicationListSettings.length - 1; index++) {
+            var checked = "";
+            if (responseObject.publicationListSettings[index].Value == "true") {checked = "checked"};
+            Platform.Response.Write("<input type=\"checkbox\" class=\"preferenceoption\" name=\"" + responseObject.publicationListSettings[index].CRMFieldName + "\"" + checked + " value=\"" + responseObject.publicationListSettings[index].Value + "\"/>" + responseObject.publicationListSettings[index].Title + "</br></br>");
+          }
 
-  try
-  {
-    requestURL = "http://cloud.content.jdrf.org/preferencesajax?contactKey=" + Request.GetQueryStringParameter("contactKey");
-    response = HTTP.Get(requestURL,["Accept","Accept-Encoding"],["application/json","gzip, deflate"]);
-    eval("responseObject = " + response.Content);
-    Platform.Response.Write("Preferences for " + responseObject.firstName + " " + responseObject.lastName + "<br><br>");
-    var index;
-    for (index = 0; index <= responseObject.publicationListSettings.length - 1; index++) {
-      var checked = "";
-      if (responseObject.publicationListSettings[index].Value == "true") {checked = "checked"};
-      Platform.Response.Write("<input type=\"checkbox\" class=\"preferenceoption\" name=\"" + responseObject.publicationListSettings[index].CRMFieldName + "\"" + checked + " />" + responseObject.publicationListSettings[index].Title + "</br></br>");
-    }
+          Platform.Response.Write("<input type=\"hidden\" value=\""+ responseObject.contactKey + "\" name=\"subscriberkey\"/>");
+          Platform.Response.Write("<input type=\"hidden\" value=\"update\" name=\"action\"/>");
+        }
+        catch(e)
+        {
+          responseObject.error = e.message;
+          Platform.Response.Write("Error: " + e.message + "</br></br>");
+        }
 
-    Platform.Response.Write("<input type=\"hidden\" value=\""+ responseObject.contactKey + "\" name=\"subscriberkey\"/>");
-    Platform.Response.Write("<input type=\"hidden\" value=\"update\" name=\"action\"/>");
-  }
-  catch(e)
-  {
-    responseObject.error = e.message;
-    Platform.Response.Write("Error: " + e.message + "</br></br>");
-  }
-
-</script>
-<input type="submit"/>
-</form>
-</body>
+      </script>
+      <input type="submit"/>
+    </form>
+  </body>
 </html>
