@@ -23,7 +23,7 @@
 	  "Contact", @contactKey,
 	  "Mkto_Research_News__c",Iif(RequestParameter("Mkto_Research_News__c") == "Mkto_Research_News__c","true","false"),
 		"Mkto_Advocacy__c",Iif(RequestParameter("Mkto_Advocacy__c") == "Mkto_Advocacy__c","true","false"),
-		"Mkto_Chapter_Updates__c",Iif(RequestParameter("Mkto_Research_News__c") == "Mkto_Chapter_Updates__c","true","false"),
+		"Mkto_Chapter_Updates__c",Iif(RequestParameter("Mkto_Chapter_Updates__c") == "Mkto_Chapter_Updates__c","true","false"),
 		"Mkto_Periodic_Email_Updates__c",Iif(RequestParameter("Mkto_Periodic_Email_Updates__c") == "Mkto_Periodic_Email_Updates__c","true","false")
 	  )
 		Redirect(Concat("/preferences?contactKey=",@contactKey,"&action=",@formAction))
