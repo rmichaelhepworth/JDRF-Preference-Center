@@ -10,7 +10,7 @@
 %%[
   Set @contactKey = [_subscriberkey]
   Set @publicationList = [listid]
-  Set @publicationLists = LookupOrderedRows("Publication Lists",-1,"Order","Active",1);
+  /*Set @crmField = Lookup('Publication Lists','CRM_Field_Name', @publicationList)*/
   Set @messageContext = [_messagecontext]
   Set @agent = HTTPRequestHeader('User-Agent')
   Set @referrer = HTTPRequestHeader('Referer')
