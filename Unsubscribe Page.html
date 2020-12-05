@@ -10,7 +10,7 @@
 %%[
   Set @contactKey = [_subscriberkey]
   Set @publicationList = [listid]
-  /*Set @crmField = Lookup('Publication Lists','CRM_Field_Name', @publicationList)*/
+  /*Set @crmFieldName = Lookup('Publication Lists','CRM_Field_Name', @publicationList)*/
   Set @messageContext = [_messagecontext]
   Set @agent = HTTPRequestHeader('User-Agent')
   Set @referrer = HTTPRequestHeader('Referer')
@@ -31,7 +31,8 @@
     <title>Unsubscribe</title>
   </head>
   <body>
-  Publication List:  %%=V(@publicationList)=%% <br>
+  <h4>Test 1</h4>
+  Publication List:  %%_subscriberkey%% <br>
   Contact Key:  %%=V(@contactKey)=%% <br>
   </body>
 </html>
