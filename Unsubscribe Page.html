@@ -1,38 +1,14 @@
 %%[
-	var @messageContext,@contactKey,@firstName,@lastName
-  var @settingsObject,@publicationLists,@contactFields,@referrer,@agent,@publicationList
+
+var @firstName
+set @firstName = _subscriberKey
+
 ]%%
-<script runat=server>
-	Platform.Load("Core","1");
-	try
-	{
-</script>
-%%[
-  Set @contactKey = [_subscriberkey]
-  Set @publicationList = [listid]
-  /*Set @crmFieldName = Lookup('Publication Lists','CRM_Field_Name', @publicationList)*/
-  Set @messageContext = [_messagecontext]
-  Set @agent = HTTPRequestHeader('User-Agent')
-  Set @referrer = HTTPRequestHeader('Referer')
-  Set @host = HTTPRequestHeader('Host')
-]%%
-<script runat=server>
-	}
-	catch(e)
-	{
-    Platform.Response.Write(e.message);
-	}
-</script>
 
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Unsubscribe</title>
-  </head>
-  <body>
-  <h4>Test 3</h4>
-  Publication List:  %%[listid]%% <br>
-  Contact Key:  %%[_subscriberkey]%% <br>
-  </body>
+<html>
+   <body>
+      <h2>Hello %%=v(@firstName)=%%,</h2>
+      <p>Welcome to your personalized landing page.</p>
+   </body>
 </html>
