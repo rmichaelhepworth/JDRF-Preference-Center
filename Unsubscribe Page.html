@@ -9,7 +9,7 @@
 </script>
 %%[
 
-  Set @crmFieldName = Lookup('Publication Lists','CRM_Field_Name', [_listname])
+  Set @crmFieldName = Lookup('Publication Lists','CRM_Field_Name', 'Title', [_listname])
   Set @messageContext = [_messagecontext]
   Set @agent = HTTPRequestHeader('User-Agent')
   Set @referrer = HTTPRequestHeader('Referer')
