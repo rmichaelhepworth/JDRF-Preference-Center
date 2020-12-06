@@ -3,7 +3,6 @@
     <meta http-equiv="pragma" content="no-cache" />
   </head>
   <body>
-      TEST 10 <br><br>
       <form action="/preferencesajax" method="post">
       <script runat=server>
 
@@ -19,7 +18,7 @@
 
           response = HTTP.Get(requestURL,["Accept","Accept-Encoding"],["application/json","gzip, deflate"]);
           eval("responseObject = " + response.Content);
-          Platform.Response.Write("Preferences for " + responseObject.firstName + " " + responseObject.lastName + "<br><br>");
+          Platform.Response.Write("<h4> Preferences for " + responseObject.firstName + " " + responseObject.lastName + "</h4><br><br>");
           var index;
           for (index = 0; index <= responseObject.publicationListSettings.length - 1; index++) {
             var checked = "";
@@ -35,7 +34,6 @@
           responseObject.error = e.message;
           Platform.Response.Write("Error: " + e.message + "</br></br>");
         }
-        Platform.Response.Write(Stringify(responseObject));
       </script>
       <br>
       <input type="submit"/>
