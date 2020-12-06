@@ -1,6 +1,6 @@
 %%[
 	var @messageContext,@contactKey,@firstName,@lastName
-  var @settingsObject,@publicationLists,@contactFields,@referrer,@agent,@publicationList
+  var @crmFieldName,@referrer,@agent,@host
 ]%%
 <script runat=server>
 	Platform.Load("Core","1");
@@ -9,7 +9,7 @@
 </script>
 %%[
 
-  /*Set @crmFieldName = Lookup('Publication Lists','CRM_Field_Name', @publicationList)*/
+  Set @crmFieldName = Lookup('Publication Lists','CRM_Field_Name', AttributeValue('_listname'))
   Set @messageContext = [_messagecontext]
   Set @agent = HTTPRequestHeader('User-Agent')
   Set @referrer = HTTPRequestHeader('Referer')
@@ -33,6 +33,7 @@
   <body>
   <h4>Personalization Test 2</h4>
   Subscriber Key:  %%_subscriberKey%% <br>
-  List Name: %%_listname%%
+  List Name: %%_listname%% <br>
+  CRM Field Name:  %%=V(@crmFieldName)=%%
   </body>
 </html>
