@@ -21,7 +21,7 @@
           requestURL = "http://cloud.content.jdrf.org/preferencesajax?contactKey=" + Variable.GetValue("@subscriberKey") + "&formAction=" + Request.GetFormField("formAction");
           response = HTTP.Get(requestURL,["Accept","Accept-Encoding"],["application/json","gzip, deflate"]);
           eval("responseObject = " + response.Content);
-          Platform.Response.Write("<h4> Preferences for " + responseObject.firstName + " " + responseObject.lastName + "</h4> Test 2");
+          Platform.Response.Write("<h4> Preferences for " + responseObject.firstName + " " + responseObject.lastName + "</h4>");
           var index;
           for (index = 0; index <= responseObject.publicationListSettings.length - 1; index++) {
             var checked = "";
@@ -41,7 +41,5 @@
       <br>
       <input type="submit"/>
     </form>
-    <p>Subscriber Key: %%_subscriberKey%% </p>
-    <p>Subscriber Key Var: %%=V(@subscriberKey)=%%</p>
   </body>
 </html>
