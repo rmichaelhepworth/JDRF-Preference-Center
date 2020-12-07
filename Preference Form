@@ -1,6 +1,6 @@
 %%[
   Var @subscriberKey
-  Set @subscriberKey = [_subscriberKey]
+  Set @subscriberKey = Iif(IsNull([_subscriberKey]),RequestParameter("contactKey"),[_subscriberKey])
 ]%%
 <html>
   <head>
