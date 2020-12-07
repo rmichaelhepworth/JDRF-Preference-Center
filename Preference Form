@@ -41,6 +41,6 @@
       <br>
       <input type="submit"/>
     </form>
-    SubscriberKey:  %%=V(@subscriberKey)=%%
+    Test 2 SubscriberKey:  %%=V(@subscriberKey)=%%
   </body>
 </html>
