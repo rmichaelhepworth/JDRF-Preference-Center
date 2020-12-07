@@ -32,9 +32,30 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    %%[
+    IF NOT Empty(@crmFieldName) THEN
+    ]%%
+    <title>Unsubscribe</title>
+    %%[
+    ELSE
+    ]%%
+    <title>Unsubscribe</title>
+    %%[
+    ENDIF
+    ]%%
     <title>Unsubscribe</title>
   </head>
   <body>
-  <h4>You have successfully unsubscribed from &apos;%%_listname%%&apos;</h4>
+    %%[
+    IF NOT Empty(@crmFieldName) THEN
+    ]%%
+      <h4>You have successfully unsubscribed from &apos;%%_listname%%&apos;</h4>
+    %%[
+    ELSE
+    ]%%
+      <h4>You have successfully updated your preferences</h4>
+    %%[
+    ENDIF
+    ]%%
   </body>
 </html>
