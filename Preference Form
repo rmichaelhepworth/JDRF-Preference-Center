@@ -1,3 +1,8 @@
+%%[
+  Var @subscriberKey
+  Set @subscriberKey = [_subscriberKey]
+
+]%%
 <html>
   <head>
     <meta http-equiv="pragma" content="no-cache" />
@@ -14,10 +19,10 @@
 
         try
         {
-          requestURL = "http://cloud.content.jdrf.org/preferencesajax?contactKey=" + [_subscriberKey] + "&formAction=" + Request.GetFormField("formAction");
+          requestURL = "http://cloud.content.jdrf.org/preferencesajax?contactKey=" + Variable.getValue("@subscriberKey") + "&formAction=" + Request.GetFormField("formAction");
           response = HTTP.Get(requestURL,["Accept","Accept-Encoding"],["application/json","gzip, deflate"]);
           eval("responseObject = " + response.Content);
-          Platform.Response.Write("<h4> Preferences for " + responseObject.firstName + " " + responseObject.lastName + "</h4> Test 1");
+          Platform.Response.Write("<h4> Preferences for " + responseObject.firstName + " " + responseObject.lastName + "</h4> Test 2");
           var index;
           for (index = 0; index <= responseObject.publicationListSettings.length - 1; index++) {
             var checked = "";
