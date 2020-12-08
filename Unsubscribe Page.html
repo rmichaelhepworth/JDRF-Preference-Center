@@ -1,6 +1,8 @@
 %%[
 	var @messageContext,@contactKey,@firstName,@lastName
-  var @crmFieldName,@referrer,@agent,@host,@updateRecord
+  var @crmFieldName,@referrer,@agent,@host,@updateRecord,@subscriberKey
+
+  Set @subscriberKey = Iif(Empty([_subscriberKey]),RequestParameter("contactKey"),[_subscriberKey])
 ]%%
 <script runat=server>
 	Platform.Load("Core","1");
@@ -16,7 +18,7 @@
   Set @host = HTTPRequestHeader('Host')
 
   IF NOT Empty(@crmFieldName) THEN
-    set @updateRecord = UpdateSingleSalesforceObject("Contact", [_subscriberKey],@crmFieldName,"false")
+    set @updateRecord = UpdateSingleSalesforceObject("Contact", @subscriberKey,@crmFieldName,"false")
   ENDIF
 
 ]%%
@@ -54,6 +56,7 @@
     ELSE
     ]%%
       <h4>You have successfully updated your preferences</h4>
+      Go back to <a href="%%=RedirectTo(Concat('/preferences?contactkey=',))">preferences</a>
     %%[
     ENDIF
     ]%%
