@@ -1,4 +1,5 @@
 %%[
+
   Var @subscriberKey
   Set @subscriberKey = Iif(Empty([_subscriberKey]),RequestParameter("contactKey"),[_subscriberKey])
 ]%%
@@ -41,6 +42,5 @@
       <br>
       <input type="submit"/>
     </form>
-    Test 2 SubscriberKey:  %%=V(@subscriberKey)=%%
   </body>
 </html>
