@@ -26,7 +26,7 @@
 		"Mkto_Chapter_Updates__c",Iif(RequestParameter("Mkto_Chapter_Updates__c") == "Mkto_Chapter_Updates__c","true","false"),
 		"Mkto_Periodic_Email_Updates__c",Iif(RequestParameter("Mkto_Periodic_Email_Updates__c") == "Mkto_Periodic_Email_Updates__c","true","false")
 	  )
-		Redirect(Concat("/unsubscribe?contactKey=",@contactKey,"&action=",@formAction))
+		Redirect(Concat("/unsubscribe?contactKey=",@contactKey))
 	ELSE
 		Set @settingsObject = "[";
 		Set @contactFields = 'Id, FirstName,LastName'
