@@ -51,11 +51,12 @@
     IF NOT Empty(@crmFieldName) THEN
     ]%%
       <h4>You have successfully unsubscribed from &apos;%%_listname%%&apos;</h4>
+      <p>Manage your <a href="%%=RedirectTo(Concat('/preferences?contactkey=', @subscriberKey))=%%">preferences</a></p>
     %%[
     ELSE
     ]%%
       <h4>You have successfully updated your preferences</h4>
-      Go back to <a href="%%=RedirectTo(Concat('/preferences?contactkey=', @subscriberKey))=%%">preferences</a>
+      <p>Manage your <a href="%%=RedirectTo(Concat('/preferences?contactkey=', @subscriberKey))=%%">preferences</a></p>
     %%[
     ENDIF
     ]%%
